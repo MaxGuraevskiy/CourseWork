@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlcoTest.ProfilePage"
+             xmlns:material="clr-namespace:Plugin.MaterialDesignControls;assembly=Plugin.MaterialDesignControls">
+
+
+    <StackLayout Margin="20">
+
+        <StackLayout>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox
+                    x:Name="ConfirmProfile"
+                    HorizontalOptions="Start"
+                    IsChecked="True"
+                    CheckedChanged="ConfirmProfileCheckedChanged"
+                    Color="Black"/>
+                <Label
+                    Text="Your Profile"
+                    Grid.Column="1"
+                    FontSize="30"
+                    FontFamily="Italic"
+                    TextColor="Black"/>
+
+            </Grid>
+        </StackLayout>
+
+        <StackLayout
+            x:Name="ProfileStackLayout"
+            IsEnabled="False"
+            IsVisible="True"
+            VerticalOptions="CenterAndExpand"
+            x:FieldModifier="Public">
+            <Grid Padding="10" CascadeInputTransparent="False">
+
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Sex"
+                       FontSize="30"
+                       Margin="0,10"/>
+
+                <Picker
+                    Margin="0,10"
+                    x:Name="SexPicker"
+                    x:FieldModifier="Public"
+                    Title="Choose your sex"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    BackgroundColor="AliceBlue"
+                    HorizontalOptions="CenterAndExpand">
+                    <Picker.Items>
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </Picker.Items>
+                    </Picker>
+
+                <Label
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Text="Age"
+                       FontSize="30"
+                    Margin="0,10"/>
+
+                <Label x:Name="AgeLabel"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding Source={x:Reference AgeStepper}, Path=Value, StringFormat='{0:f0} years'}"
+                       FontSize="25"
+                       TextColor="Black"
+                       Margin="0,10"/>
+
+                <Stepper
+                    x:Name="AgeStepper"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Minimum="18"
+                    Maximum="120"
+                    x:FieldModifier="Public"
+                    HorizontalOptions="Center"
+                    Margin="0,10"
+                    />
+
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Weight"
+                       FontSize="30"
+                       TextColor="Black"
+                       Margin="0,10"/>
+
+                <Label x:Name="WeightLabel"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Text="{Binding Source={x:Reference WeightSlider}, Path=Value, StringFormat='{0:f0} kg'}"
+                       FontSize="25"
+                       TextColor="Black"
+                       Margin="0,10"/>
+
+                <Slider
+                    x:Name="WeightSlider"
+                    x:FieldModifier="Public"
+                    Grid.Column="2"
+                    Grid.Row="2"
+                    Maximum="240"
+                    Minimum="40"
+                    ThumbColor="Black"
+                    MinimumTrackColor="Gray"
+                    Margin="0,10"/>
+                
+                <Label Grid.Column="0"
+                       Grid.Row="3"
+                       Text="Height"
+                       FontSize="30"
+                       TextColor="Black"
+                       Margin="0,10"/>
+
+                <Label x:Name="HeightLabel"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       Text="{Binding Source={x:Reference HeightStepper}, Path=Value, StringFormat='{0:f0} cm'}"
+                       FontSize="25"
+                       TextColor="Black"
+                       Margin="0,10"/>
+
+                <Stepper
+                    x:FieldModifier="Public"
+                    x:Name="HeightStepper"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    Maximum="220"
+                    Minimum="120"
+                    HorizontalOptions="Center"
+                    Margin="0,10"
+                    />
+
+            </Grid>
+
+
+        </StackLayout>
+
+        <StackLayout
+            VerticalOptions="EndAndExpand"
+            Margin="30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Region"
+                       FontSize="30" />
+
+                <Picker
+                    x:Name="RegionPicker"
+                    Title="Choose your TimeZone"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    BackgroundColor="AliceBlue"
+                    SelectedIndexChanged="RegionPickerSelectedIndexChanged"
+                    HorizontalOptions="CenterAndExpand">
+                    <Picker.Items>
+                        <x:String>UTC−12:00, Y</x:String>
+                        <x:String>UTC−11:00, X</x:String>
+                        <x:String>UTC−10:00, W</x:String>
+                        <x:String>UTC−09:30, V†</x:String>
+                        <x:String>UTC−09:00, V</x:String>
+                        <x:String>UTC−08:00, U</x:String>
+                        <x:String>UTC−07:00, T</x:String>
+                        <x:String>UTC−06:00, S</x:String>
+                        <x:String>UTC−05:00, R</x:String>
+                        <x:String>UTC−04:00, Q</x:String>
+                        <x:String>UTC−03:30, P†</x:String>
+                        <x:String>UTC−03:00, P</x:String>
+                        <x:String>UTC−02:00, O</x:String>
+                        <x:String>UTC−01:00, N</x:String>
+                        <x:String>UTC±00:00, Z</x:String>
+                        <x:String>UTC+01:00, A</x:String>
+                        <x:String>UTC+02:00, B</x:String>
+                        <x:String>UTC+03:00, C</x:String>
+                        <x:String>UTC+03:30, C†</x:String>
+                        <x:String>UTC+04:00, D</x:String>
+                        <x:String>UTC+04:30, D†</x:String>
+                        <x:String>UTC+05:00, E</x:String>
+                        <x:String>UTC+05:30, E†</x:String>
+                        <x:String>UTC+05:45, E*</x:String>
+                        <x:String>UTC+06:00, F</x:String>
+                        <x:String>UTC+06:30, F†</x:String>
+                        <x:String>UTC+07:00, G</x:String>
+                        <x:String>UTC+08:00, H</x:String>
+                        <x:String>UTC+08:45, H*</x:String>
+                        <x:String>UTC+09:00, I</x:String>
+                        <x:String>UTC+09:30, I†</x:String>
+                        <x:String>UTC+10:00, K</x:String>
+                        <x:String>UTC+10:30, K†</x:String>
+                        <x:String>UTC+11:00, L</x:String>
+                        <x:String>UTC+12:00, M</x:String>
+                        <x:String>UTC+12:45, M*</x:String>
+                        <x:String>UTC+13:00, M†</x:String>
+                        <x:String>UTC+14:00, M†</x:String>
+                    </Picker.Items>
+                    </Picker>
+
+            </Grid>
+
+
+        </StackLayout>
+
+    </StackLayout>
+
+
+    
+
+
+</ContentPage>
+
+
+
+

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="AlcoTest.ShottedDrinks"
+             Title="Your Shotted Drinks">
+
+    <ContentPage.Resources>
+        <!-- Implicit styles -->
+        <Style TargetType="{x:Type CollectionView}">
+            <Setter Property="BackgroundColor"
+                    Value="{StaticResource AppBackgroundColor}" />
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontFamily" Value="Montserrat-ExtraBold"/>
+        </Style>
+    </ContentPage.Resources>
+
+
+    <StackLayout>
+        
+        <CollectionView
+                        ItemsSource="{Binding drinks}"
+                        x:Name="CollectionView"
+                        BackgroundColor="AliceBlue">
+            <CollectionView.ItemsLayout>
+               <GridItemsLayout Orientation="Vertical"
+                                Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+
+                                <SwipeItemView
+                                    CommandParameter="{Binding}"
+                                    Invoked="SwipeItemViewInvoked"
+                                    BackgroundColor="AliceBlue"
+                                    WidthRequest="100">
+
+                                    <Grid
+                                        WidthRequest="100">
+
+                                        <yummy:PancakeView
+                                            CornerRadius="20"
+                                            BackgroundColor="LightPink"
+                                            IsClippedToBounds="True">                              
+
+                                            <Grid
+                                                Margin="25">
+
+                                                <Image
+                                                    Source="delete.png"
+                                                    WidthRequest="30"
+                                                    HeightRequest="30"/>
+
+                                            </Grid>
+
+                                        </yummy:PancakeView>
+
+                                    </Grid>
+                                    
+                                </SwipeItemView>
+                                
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <SwipeView.Content>
+
+                            <Grid
+                                BackgroundColor="AliceBlue">
+                                <yummy:PancakeView
+                                CornerRadius="20"
+                                IsClippedToBounds="True">
+
+                                <Grid Padding="10"
+                                      BackgroundColor="AliceBlue">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                
+                                        <Image Grid.RowSpan="3" 
+                                               Source="{Binding ImageURL}" 
+                                               Aspect="AspectFill"
+                                               HeightRequest="64" 
+                                               WidthRequest="64" />
+                
+                                        <Label Grid.Column="1"
+                                               Grid.Row="0"
+                                               Text="{Binding Name}" 
+                                               FontAttributes="Bold"
+                                               LineBreakMode="TailTruncation" />
+                
+                                        <Label Grid.Row="2"
+                                               Grid.Column="1" 
+                                               Text="{Binding Volume, StringFormat='{0:f2}l'}"
+                                               LineBreakMode="TailTruncation"
+                                               FontAttributes="Bold" 
+                                               HorizontalOptions="Start"/>
+                
+                                        <Label Grid.Row="2"
+                                               Grid.Column="1"
+                                               Text="{Binding Degree, StringFormat='{0:f0}°'}"
+                                               LineBreakMode="TailTruncation"
+                                               FontAttributes="Bold" 
+                                               HorizontalOptions="End"/>
+
+                                        <Label Grid.Row="2"
+                                               Grid.Column="2"
+                                               Grid.ColumnSpan="3"
+                                               Text="{Binding DateTime}"
+                                               LineBreakMode="TailTruncation"
+                                               FontAttributes="Italic" 
+                                               HorizontalOptions="EndAndExpand"/>
+
+                                        <Label Grid.Row="0"
+                                            Grid.Column="2"
+                                            Grid.ColumnSpan="3"
+                                            Text="{Binding Region, StringFormat='timezone {0:f0} hours'}"
+                                            LineBreakMode="TailTruncation"
+                                            FontAttributes="Italic" 
+                                            HorizontalOptions="EndAndExpand"/>
+
+                                </Grid>
+                            </yummy:PancakeView>
+                            </Grid>
+                            
+                        </SwipeView.Content>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

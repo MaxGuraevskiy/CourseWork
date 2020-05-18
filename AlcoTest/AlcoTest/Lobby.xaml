@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:iOSSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:material="clr-namespace:Plugin.MaterialDesignControls;assembly=Plugin.MaterialDesignControls"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="AlcoTest.Lobby">
+    
+        <ContentPage.Resources>      
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderColor" Value="Black" />
+        </Style>
+    </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+            <Button Text="Profile"
+                     Clicked="OnProfileClicked"
+                     Grid.Row="0"
+                     Grid.Column="0"
+                    FontSize="20"
+                    HorizontalOptions="Start"
+                    TextColor="White"/>
+            <Button Text="List"
+                     Clicked="OnListClicked"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                    FontSize="20"
+                    TextColor="White"
+                    HorizontalOptions="End"/>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <StackLayout>
+
+        <StackLayout
+            IsVisible="false"
+            VerticalOptions="Start"
+            >
+
+            
+
+            <Picker x:FieldModifier="Public"
+                    x:Name="DrinkTypePicker"
+                    SelectedIndexChanged="OnDrinkTypePickerSelectedIndexChanged"
+                    IsEnabled="True"
+                    IsVisible="false"
+                    ItemsSource="{Binding baseDrinksName}"/>
+
+
+            <material:MaterialDoublePicker x:Name="VolumeDoublePicker" Type="Filled" LabelText="Double Picker"
+                                           ItemsSource="{Binding VolumeItemsSource}" SecondaryItemsSource="{Binding VolumeSecondaryItemsSource}"
+                                           SelectedItem="{Binding VolumeSelectedItem}" SecondarySelectedItem="{Binding VolumeSecondarySelectedItem}"
+                                           IsVisible="False" IsEnabled="True" SelectedIndexesChanged="VolumeDoublePickerSelectedIndexesChanged"/>
+
+            <material:MaterialDoublePicker x:Name="DegreeDoublePicker" Type="Filled" LabelText="Double Picker"
+                                           ItemsSource="{Binding DegreeItemsSource}" SecondaryItemsSource="{Binding DegreeSecondaryItemsSource}"
+                                           SelectedItem="{Binding DegreeSelectedItem}" SecondarySelectedItem="{Binding DegreeSecondarySelectedItem}"
+                                           IsVisible="False" IsEnabled="True" SelectedIndexesChanged="DegreeDoublePickerSelectedIndexesChanged"/>
+            
+
+        </StackLayout>
+
+        <StackLayout
+            VerticalOptions="Center">
+            <Button
+                Text="How Alcohol affects your body"
+                Clicked="OnInfoClicked"/>
+
+            
+        </StackLayout>
+
+        <StackLayout 
+            VerticalOptions="EndAndExpand"
+            HorizontalOptions="Center">
+
+            <StackLayout>
+                <Button
+                    x:Name="PromilleButton"
+                    HeightRequest="100"
+                    Text="0.00‰"
+                    TextColor="Black"
+                    FontSize="72"
+                    Clicked="OnPromilleButtonClicked"
+                    />
+
+                <Label
+                    x:Name="ExhaledAirLabel"
+                    HorizontalOptions="Center"
+                    FontSize="30"
+                    TextColor="Black"
+                    />
+
+
+            </StackLayout>
+        </StackLayout>
+
+
+        
+
+        <StackLayout
+            VerticalOptions="EndAndExpand"
+            HorizontalOptions="Center"
+            Padding="40">
+
+            <Grid >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="100" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton
+                    x:Name="TypeImage"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Source="{Binding NewImageURL}"
+                    Clicked="OnTypeDrinkClicked"/>
+
+                <Button
+                    x:Name="VolumeButton"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    TextColor="Black"
+                    FontSize="60"
+                    Clicked="OnVolumeClicked"/>
+
+                <Button
+                    x:Name="DegreeButton"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    TextColor="Black"
+                    FontSize="60"
+                    Clicked="OnDegreeClicked"/>
+
+                <ImageButton
+                    x:Name="ConfirmButton"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Source="Save.png"
+                    Clicked="OnConfirmClicked"/>
+
+            </Grid>
+
+        </StackLayout>
+
+        
+
+    </StackLayout>
+
+
+
+</ContentPage>
